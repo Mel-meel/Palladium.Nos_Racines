@@ -33,9 +33,13 @@ class StartPageController extends AbstractController {
 
         // Maintenance Mode Check
         if ($config->isMaintenanceMode()) {
-            return $this->render('start/maintenance.html.twig', [
-                'message' => $this->translator->trans('site_under_maintenance')
-            ]) ;
+            return $this->render('start/maintenance.html.twig', [$maintenance => [
+                    'title' => $this->translator->trans('maintenance.title'),
+                    'heading' => $this->translator->trans('maintenance.heading'),
+                    'contact_info' => $this->translator->trans('maintenance.contact_info'),
+                    'footer' => $this->translator->trans('maintenance.footer')
+                ]
+            ]);
         }
 
         // Fetch recent documents
@@ -49,7 +53,7 @@ class StartPageController extends AbstractController {
         $menuMobile = $this->menuService->getMenu($config->getCustomAdvancedMainMenuMobile()) ?? $menuDesktop ;
 
         // Render start page
-        return $this->render('start/index.html.twig', [
+        return $this->render('startpage/index.html.twig', [
             'config' => $config,
             'recentDocuments' => $recentDocuments,
             'notifications' => $notifications,

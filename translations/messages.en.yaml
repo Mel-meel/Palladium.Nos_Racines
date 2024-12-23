@@ -7,3 +7,8 @@ multilanguage_family: "Multilingual Family"
 custom_footer_text: "Footer Text"
 custom_advanced_main_menu: "Advanced Main Menu (Desktop)"
 custom_advanced_main_menu_mobile: "Advanced Main Menu (Mobile)"
+maintenance:
+    title: "Maintenance in Progress"
+    heading: "The %clan_name% family site is temporarily under maintenance."
+    contact_info: "For more information, please contact the administrator."
+    footer: "Thank you for your patience. We will be back soon!"

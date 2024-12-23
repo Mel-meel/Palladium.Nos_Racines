@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'maintenance.title'|trans }}</title>
+    <link rel="stylesheet" href="/path/to/styles.css">
+</head>
+<body>
+    <div class="maintenance-page">
+        <h1>{{ 'maintenance.heading'|trans }}</h1>
+        <p>{{ message }}</p>
+
+        <p>{{ 'maintenance.contact_info'|trans }}</p>
+
+        <p class="footer">{{ 'maintenance.footer'|trans }}</p>
+    </div>
+</body>
+</html>

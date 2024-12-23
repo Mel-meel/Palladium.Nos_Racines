@@ -3,45 +3,64 @@
 namespace App\Service ;
 
 use App\Entity\MenuConfiguration ;
+use App\Service\LogService ;
 use Doctrine\ORM\EntityManagerInterface ;
-use Psr\Log\LoggerInterface ;
+use Twig\Environment ;
 
 class MenuService {
     private EntityManagerInterface $entityManager ;
-    private LoggerInterface $logger ;
+    private LogService $logService ;
+    private Environment $twig ;
 
-    public function __construct(EntityManagerInterface $entityManager, LoggerInterface $logger) {
+    public function __construct(EntityManagerInterface $entityManager, LogService $logService, Environment $twig) {
         $this->entityManager = $entityManager ;
-        $this->logger = $logger ;
+        $this->logService = $logService ;
+        $this->twig = $twig ;
     }
 
     /**
-     * Récupère et traite le menu depuis l'entité MenuConfiguration.
-     *
-     * @param int|null $menuId L'identifiant du menu à récupérer.
-     * @return array|null Tableau contenant les éléments du menu ou null si non trouvé.
+     * Récupère un menu par son ID.
      */
-    public function getMenu(?int $menuId) : ?array {
-        if ($menuId === null || $menuId <= 0) {
-            $this->logger->info('Menu ID invalide ou non spécifié.') ;
-            return null ;
-        }
-
+    public function getMenu(int $menuId) : ?MenuConfiguration {
         /** @var MenuConfiguration|null $menuConfig */
         $menuConfig = $this->entityManager->getRepository(MenuConfiguration::class)->find($menuId) ;
 
         if (!$menuConfig) {
-            $this->logger->warning(sprintf('Menu ID %d introuvable.', $menuId)) ;
+            $this->logService->addLog(
+                message: sprintf('Menu ID %d not found.', $menuId),
+                level: 'warning',
+                context: 'MenuService::getMenu'
+            ) ;
             return null ;
         }
 
-        $this->logger->info(sprintf('Menu ID %d chargé avec succès.', $menuId)) ;
+        $this->logService->addLog(
+            message: sprintf('Menu ID %d successfully retrieved.', $menuId),
+            level: 'info',
+            context: 'MenuService::getMenu'
+        ) ;
 
-        return [
-            'name' => $menuConfig->getName(),
-            'orientation' => $menuConfig->getOrientation(),
-            'content' => $menuConfig->getContent(),
-            'customCSS' => $menuConfig->getCustomCSS(),
-        ] ;
+        return $menuConfig ;
+    }
+
+    /**
+     * Rend le menu pour être directement utilisé dans Twig.
+     */
+    public function renderMenu(?int $menuId) : string {
+        $menuConfig = $this->getMenu($menuId) ;
+
+        if (!$menuConfig) {
+            return '' ; // Retourne une chaîne vide si le menu n'est pas trouvé
+        }
+
+        $this->logService->addLog(
+            message: sprintf('Rendering menu ID %d.', $menuId),
+            level: 'info',
+            context: 'MenuService::renderMenu'
+        ) ;
+
+        return $this->twig->render('partials/mainmenu.html.twig', [
+            'menuConfig' => $menuConfig,
+        ]) ;
     }
 }

@@ -1,0 +1,19 @@
+<nav class="menu {{ menuConfig.orientation }}">
+    <ul>
+        {% for item in menuConfig.content %}
+            <li>
+                <a href="{{ item.link }}">{{ item.label }}</a>
+                {% if item.submenu is defined and item.submenu|length > 0 %}
+                    <ul>
+                        {% for subItem in item.submenu %}
+                            <li><a href="{{ subItem.link }}">{{ subItem.label }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% if menuConfig.customCSS %}
+        <style>{{ menuConfig.customCSS|raw }}</style>
+    {% endif %}
+</nav>

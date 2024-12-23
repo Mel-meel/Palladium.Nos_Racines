@@ -1,4 +1,3 @@
-
 global_clan_name: "Nom du Clan"
 maintenance_mode: "Mode Maintenance"
 active_connection_link_start_page: "Lien de Connexion sur la Page d'Accueil"
@@ -8,3 +7,8 @@ multilanguage_family: "Famille Multilingue"
 custom_footer_text: "Texte du Pied de Page"
 custom_advanced_main_menu: "Menu Principal Avancé (Desktop)"
 custom_advanced_main_menu_mobile: "Menu Principal Avancé (Mobile)"
+maintenance:
+    title: "Maintenance en cours"
+    heading: "Le site de la famille %clan_name% est temporairement en maintenance."
+    contact_info: "Pour plus d'informations, veuillez contacter l'administrateur."
+    footer: "Merci de votre patience. Nous reviendrons bientôt !"
