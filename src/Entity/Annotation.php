@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity ;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM ;
 
 #[ORM\Entity]
 class Annotation
@@ -10,152 +10,152 @@ class Annotation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private int $id ;
 
     #[ORM\Column(type: 'float')]
-    private float $startX;
+    private float $startX ;
 
     #[ORM\Column(type: 'float')]
-    private float $startY;
+    private float $startY ;
 
     #[ORM\Column(type: 'float')]
-    private float $endX;
+    private float $endX ;
 
     #[ORM\Column(type: 'float')]
-    private float $endY;
+    private float $endY ;
 
     #[ORM\Column(type: 'text')]
-    private string $comment;
+    private string $comment ;
 
     #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $createdAt;
+    private \DateTimeInterface $createdAt ;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private User $createdBy;
+    private User $createdBy ;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?\DateTimeInterface $updatedAt = null ;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: true)]
-    private ?User $updatedBy = null;
+    private ?User $updatedBy = null ;
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new \DateTime() ;
     }
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ;
     }
 
     public function getStartX(): float
     {
-        return $this->startX;
+        return $this->startX ;
     }
 
     public function setStartX(float $startX): self
     {
-        $this->startX = $startX;
+        $this->startX = $startX ;
 
-        return $this;
+        return $this ;
     }
 
     public function getStartY(): float
     {
-        return $this->startY;
+        return $this->startY ;
     }
 
     public function setStartY(float $startY): self
     {
-        $this->startY = $startY;
+        $this->startY = $startY ;
 
-        return $this;
+        return $this ;
     }
 
     public function getEndX(): float
     {
-        return $this->endX;
+        return $this->endX ;
     }
 
     public function setEndX(float $endX): self
     {
-        $this->endX = $endX;
+        $this->endX = $endX ;
 
-        return $this;
+        return $this ;
     }
 
     public function getEndY(): float
     {
-        return $this->endY;
+        return $this->endY ;
     }
 
     public function setEndY(float $endY): self
     {
-        $this->endY = $endY;
+        $this->endY = $endY ;
 
-        return $this;
+        return $this ;
     }
 
     public function getComment(): string
     {
-        return $this->comment;
+        return $this->comment ;
     }
 
     public function setComment(string $comment): self
     {
-        $this->comment = $comment;
+        $this->comment = $comment ;
 
-        return $this;
+        return $this ;
     }
 
     public function getCreatedAt(): \DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->createdAt ;
     }
 
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt ;
 
-        return $this;
+        return $this ;
     }
 
     public function getCreatedBy(): User
     {
-        return $this->createdBy;
+        return $this->createdBy ;
     }
 
     public function setCreatedBy(User $createdBy): self
     {
-        $this->createdBy = $createdBy;
+        $this->createdBy = $createdBy ;
 
-        return $this;
+        return $this ;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updatedAt;
+        return $this->updatedAt ;
     }
 
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = $updatedAt ;
 
-        return $this;
+        return $this ;
     }
 
     public function getUpdatedBy(): ?User
     {
-        return $this->updatedBy;
+        return $this->updatedBy ;
     }
 
     public function setUpdatedBy(?User $updatedBy): self
     {
-        $this->updatedBy = $updatedBy;
+        $this->updatedBy = $updatedBy ;
 
-        return $this;
+        return $this ;
     }
 }

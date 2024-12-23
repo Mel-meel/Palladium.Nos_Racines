@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity ;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM ;
 
 #[ORM\Entity]
 class Log
@@ -10,90 +10,90 @@ class Log
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private int $id ;
 
     #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $timestamp;
+    private \DateTimeInterface $timestamp ;
 
     #[ORM\Column(type: 'string', length: 50)]
-    private string $level;
+    private string $level ;
 
     #[ORM\Column(type: 'text')]
-    private string $message;
+    private string $message ;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $context = null;
+    private ?string $context = null ;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $user = null;
+    private ?string $user = null ;
 
     public function __construct()
     {
-        $this->timestamp = new \DateTime();
+        $this->timestamp = new \DateTime() ;
     }
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ;
     }
 
     public function getTimestamp(): \DateTimeInterface
     {
-        return $this->timestamp;
+        return $this->timestamp ;
     }
 
     public function setTimestamp(\DateTimeInterface $timestamp): self
     {
-        $this->timestamp = $timestamp;
+        $this->timestamp = $timestamp ;
 
-        return $this;
+        return $this ;
     }
 
     public function getLevel(): string
     {
-        return $this->level;
+        return $this->level ;
     }
 
     public function setLevel(string $level): self
     {
-        $this->level = $level;
+        $this->level = $level ;
 
-        return $this;
+        return $this ;
     }
 
     public function getMessage(): string
     {
-        return $this->message;
+        return $this->message ;
     }
 
     public function setMessage(string $message): self
     {
-        $this->message = $message;
+        $this->message = $message ;
 
-        return $this;
+        return $this ;
     }
 
     public function getContext(): ?string
     {
-        return $this->context;
+        return $this->context ;
     }
 
     public function setContext(?string $context): self
     {
-        $this->context = $context;
+        $this->context = $context ;
 
-        return $this;
+        return $this ;
     }
 
     public function getUser(): ?string
     {
-        return $this->user;
+        return $this->user ;
     }
 
     public function setUser(?string $user): self
     {
-        $this->user = $user;
+        $this->user = $user ;
 
-        return $this;
+        return $this ;
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity ;
 
-use App\Repository\UserRepository;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Repository\UserRepository ;
+use Doctrine\ORM\Mapping as ORM ;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface ;
+use Symfony\Component\Security\Core\User\UserInterface ;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
@@ -14,41 +14,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id = null ;
 
     #[ORM\Column(length: 180)]
-    private ?string $username = null;
+    private ?string $username = null ;
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    private array $roles = [];
+    private array $roles = [] ;
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = null;
+    private ?string $password = null ;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $email = null;
+    private ?string $email = null ;
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->id ;
     }
 
     public function getUsername(): ?string
     {
-        return $this->username;
+        return $this->username ;
     }
 
     public function setUsername(string $username): static
     {
-        $this->username = $username;
+        $this->username = $username ;
 
-        return $this;
+        return $this ;
     }
 
     /**
@@ -58,7 +58,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->username;
+        return (string) $this->username ;
     }
 
     /**
@@ -68,11 +68,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
+        $roles = $this->roles ;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_USER' ;
 
-        return array_unique($roles);
+        return array_unique($roles) ;
     }
 
     /**
@@ -80,9 +80,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function setRoles(array $roles): static
     {
-        $this->roles = $roles;
+        $this->roles = $roles ;
 
-        return $this;
+        return $this ;
     }
 
     /**
@@ -90,14 +90,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
     {
-        return $this->password;
+        return $this->password ;
     }
 
     public function setPassword(string $password): static
     {
-        $this->password = $password;
+        $this->password = $password ;
 
-        return $this;
+        return $this ;
     }
 
     /**
@@ -106,18 +106,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        // $this->plainPassword = null ;
     }
 
     public function getEmail(): ?string
     {
-        return $this->email;
+        return $this->email ;
     }
 
     public function setEmail(?string $email): static
     {
-        $this->email = $email;
+        $this->email = $email ;
 
-        return $this;
+        return $this ;
     }
 }

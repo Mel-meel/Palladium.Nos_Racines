@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity ;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM ;
 
 #[ORM\Entity]
 class AnnotationLink
@@ -10,58 +10,58 @@ class AnnotationLink
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private int $id ;
 
     #[ORM\ManyToOne(targetEntity: Annotation::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private Annotation $annotation;
+    private Annotation $annotation ;
 
     #[ORM\ManyToOne(targetEntity: Photo::class)]
     #[ORM\JoinColumn(nullable: true)]
-    private ?Photo $photo = null;
+    private ?Photo $photo = null ;
 
     #[ORM\ManyToOne(targetEntity: DocumentVersion::class)]
     #[ORM\JoinColumn(nullable: true)]
-    private ?DocumentVersion $documentVersion = null;
+    private ?DocumentVersion $documentVersion = null ;
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ;
     }
 
     public function getAnnotation(): Annotation
     {
-        return $this->annotation;
+        return $this->annotation ;
     }
 
     public function setAnnotation(Annotation $annotation): self
     {
-        $this->annotation = $annotation;
+        $this->annotation = $annotation ;
 
-        return $this;
+        return $this ;
     }
 
     public function getPhoto(): ?Photo
     {
-        return $this->photo;
+        return $this->photo ;
     }
 
     public function setPhoto(?Photo $photo): self
     {
-        $this->photo = $photo;
+        $this->photo = $photo ;
 
-        return $this;
+        return $this ;
     }
 
     public function getDocumentVersion(): ?DocumentVersion
     {
-        return $this->documentVersion;
+        return $this->documentVersion ;
     }
 
     public function setDocumentVersion(?DocumentVersion $documentVersion): self
     {
-        $this->documentVersion = $documentVersion;
+        $this->documentVersion = $documentVersion ;
 
-        return $this;
+        return $this ;
     }
 }

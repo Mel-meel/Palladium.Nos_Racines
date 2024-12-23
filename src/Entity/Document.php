@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity ;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection ;
+use Doctrine\Common\Collections\Collection ;
+use Doctrine\ORM\Mapping as ORM ;
 
 #[ORM\Entity]
 class Document
@@ -12,66 +12,66 @@ class Document
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private int $id ;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $title;
+    private string $title ;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $description;
+    private ?string $description ;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'documents')]
     #[ORM\JoinTable(name: 'document_tags')]
-    private Collection $tags;
+    private Collection $tags ;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private User $createdBy;
+    private User $createdBy ;
 
     #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $createdAt;
+    private \DateTimeInterface $createdAt ;
 
     #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $updatedAt;
+    private \DateTimeInterface $updatedAt ;
 
     #[ORM\OneToMany(targetEntity: DocumentVersion::class, mappedBy: 'document', cascade: ['persist', 'remove'])]
-    private Collection $versions;
+    private Collection $versions ;
 
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
-        $this->versions = new ArrayCollection();
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
+        $this->tags = new ArrayCollection() ;
+        $this->versions = new ArrayCollection() ;
+        $this->createdAt = new \DateTime() ;
+        $this->updatedAt = new \DateTime() ;
     }
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ;
     }
 
     public function getTitle(): string
     {
-        return $this->title;
+        return $this->title ;
     }
 
     public function setTitle(string $title): self
     {
-        $this->title = $title;
+        $this->title = $title ;
 
-        return $this;
+        return $this ;
     }
 
     public function getDescription(): ?string
     {
-        return $this->description;
+        return $this->description ;
     }
 
     public function setDescription(?string $description): self
     {
-        $this->description = $description;
+        $this->description = $description ;
 
-        return $this;
+        return $this ;
     }
 
     /**
@@ -79,59 +79,59 @@ class Document
      */
     public function getTags(): Collection
     {
-        return $this->tags;
+        return $this->tags ;
     }
 
     public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
+            $this->tags[] = $tag ;
         }
 
-        return $this;
+        return $this ;
     }
 
     public function removeTag(Tag $tag): self
     {
-        $this->tags->removeElement($tag);
+        $this->tags->removeElement($tag) ;
 
-        return $this;
+        return $this ;
     }
 
     public function getCreatedBy(): User
     {
-        return $this->createdBy;
+        return $this->createdBy ;
     }
 
     public function setCreatedBy(User $createdBy): self
     {
-        $this->createdBy = $createdBy;
+        $this->createdBy = $createdBy ;
 
-        return $this;
+        return $this ;
     }
 
     public function getCreatedAt(): \DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->createdAt ;
     }
 
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt ;
 
-        return $this;
+        return $this ;
     }
 
     public function getUpdatedAt(): \DateTimeInterface
     {
-        return $this->updatedAt;
+        return $this->updatedAt ;
     }
 
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = $updatedAt ;
 
-        return $this;
+        return $this ;
     }
 
     /**
@@ -139,27 +139,27 @@ class Document
      */
     public function getVersions(): Collection
     {
-        return $this->versions;
+        return $this->versions ;
     }
 
     public function addVersion(DocumentVersion $version): self
     {
         if (!$this->versions->contains($version)) {
-            $this->versions[] = $version;
-            $version->setDocument($this);
+            $this->versions[] = $version ;
+            $version->setDocument($this) ;
         }
 
-        return $this;
+        return $this ;
     }
 
     public function removeVersion(DocumentVersion $version): self
     {
         if ($this->versions->removeElement($version)) {
             if ($version->getDocument() === $this) {
-                $version->setDocument(null);
+                $version->setDocument(null) ;
             }
         }
 
-        return $this;
+        return $this ;
     }
 }

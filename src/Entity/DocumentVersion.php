@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity ;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection ;
+use Doctrine\Common\Collections\Collection ;
+use Doctrine\ORM\Mapping as ORM ;
 
 #[ORM\Entity]
 class DocumentVersion
@@ -12,137 +12,137 @@ class DocumentVersion
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private int $id ;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $filePath;
+    private string $filePath ;
 
     #[ORM\Column(type: 'integer')]
-    private int $versionNumber;
+    private int $versionNumber ;
 
     #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $createdAt;
+    private \DateTimeInterface $createdAt ;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private User $updatedBy;
+    private User $updatedBy ;
 
     #[ORM\ManyToOne(targetEntity: Document::class, inversedBy: 'versions')]
     #[ORM\JoinColumn(nullable: false)]
-    private Document $document;
+    private Document $document ;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $notes;
+    private ?string $notes ;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?\DateTimeInterface $productionDate;
+    private ?\DateTimeInterface $productionDate ;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $transcription;
+    private ?string $transcription ;
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new \DateTime() ;
     }
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ;
     }
 
     public function getFilePath(): string
     {
-        return $this->filePath;
+        return $this->filePath ;
     }
 
     public function setFilePath(string $filePath): self
     {
-        $this->filePath = $filePath;
+        $this->filePath = $filePath ;
 
-        return $this;
+        return $this ;
     }
 
     public function getVersionNumber(): int
     {
-        return $this->versionNumber;
+        return $this->versionNumber ;
     }
 
     public function setVersionNumber(int $versionNumber): self
     {
-        $this->versionNumber = $versionNumber;
+        $this->versionNumber = $versionNumber ;
 
-        return $this;
+        return $this ;
     }
 
     public function getCreatedAt(): \DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->createdAt ;
     }
 
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt ;
 
-        return $this;
+        return $this ;
     }
 
     public function getUpdatedBy(): User
     {
-        return $this->updatedBy;
+        return $this->updatedBy ;
     }
 
     public function setUpdatedBy(User $updatedBy): self
     {
-        $this->updatedBy = $updatedBy;
+        $this->updatedBy = $updatedBy ;
 
-        return $this;
+        return $this ;
     }
 
     public function getDocument(): Document
     {
-        return $this->document;
+        return $this->document ;
     }
 
     public function setDocument(Document $document): self
     {
-        $this->document = $document;
+        $this->document = $document ;
 
-        return $this;
+        return $this ;
     }
 
     public function getNotes(): ?string
     {
-        return $this->notes;
+        return $this->notes ;
     }
 
     public function setNotes(?string $notes): self
     {
-        $this->notes = $notes;
+        $this->notes = $notes ;
 
-        return $this;
+        return $this ;
     }
 
     public function getProductionDate(): ?\DateTimeInterface
     {
-        return $this->productionDate;
+        return $this->productionDate ;
     }
 
     public function setProductionDate(?\DateTimeInterface $productionDate): self
     {
-        $this->productionDate = $productionDate;
+        $this->productionDate = $productionDate ;
 
-        return $this;
+        return $this ;
     }
 
     public function getTranscription(): ?string
     {
-        return $this->transcription;
+        return $this->transcription ;
     }
 
     public function setTranscription(?string $transcription): self
     {
-        $this->transcription = $transcription;
+        $this->transcription = $transcription ;
 
-        return $this;
+        return $this ;
     }
 }

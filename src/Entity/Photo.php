@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity ;
 
-use App\Entity\Album;
-use App\Entity\Tag;
-use App\Entity\User;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Album ;
+use App\Entity\Tag ;
+use App\Entity\User ;
+use Doctrine\Common\Collections\ArrayCollection ;
+use Doctrine\Common\Collections\Collection ;
+use Doctrine\ORM\Mapping as ORM ;
 
 #[ORM\Entity]
 class Photo
@@ -15,118 +15,118 @@ class Photo
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private int $id ;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $title;
+    private string $title ;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $description;
+    private ?string $description ;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $filePath;
+    private string $filePath ;
 
     #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $uploadDate;
+    private \DateTimeInterface $uploadDate ;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private User $createdBy;
+    private User $createdBy ;
 
     #[ORM\ManyToOne(targetEntity: Album::class, inversedBy: 'photos')]
-    private ?Album $album;
+    private ?Album $album ;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'photos')]
     #[ORM\JoinTable(name: 'photo_tags')]
-    private Collection $tags;
+    private Collection $tags ;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?\DateTimeInterface $takenAt;
+    private ?\DateTimeInterface $takenAt ;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $location;
+    private ?string $location ;
 
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
-        $this->uploadDate = new \DateTime();
+        $this->tags = new ArrayCollection() ;
+        $this->uploadDate = new \DateTime() ;
     }
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ;
     }
 
     public function getTitle(): string
     {
-        return $this->title;
+        return $this->title ;
     }
 
     public function setTitle(string $title): self
     {
-        $this->title = $title;
+        $this->title = $title ;
 
-        return $this;
+        return $this ;
     }
 
     public function getDescription(): ?string
     {
-        return $this->description;
+        return $this->description ;
     }
 
     public function setDescription(?string $description): self
     {
-        $this->description = $description;
+        $this->description = $description ;
 
-        return $this;
+        return $this ;
     }
 
     public function getFilePath(): string
     {
-        return $this->filePath;
+        return $this->filePath ;
     }
 
     public function setFilePath(string $filePath): self
     {
-        $this->filePath = $filePath;
+        $this->filePath = $filePath ;
 
-        return $this;
+        return $this ;
     }
 
     public function getUploadDate(): \DateTimeInterface
     {
-        return $this->uploadDate;
+        return $this->uploadDate ;
     }
 
     public function setUploadDate(\DateTimeInterface $uploadDate): self
     {
-        $this->uploadDate = $uploadDate;
+        $this->uploadDate = $uploadDate ;
 
-        return $this;
+        return $this ;
     }
 
     public function getCreatedBy(): User
     {
-        return $this->createdBy;
+        return $this->createdBy ;
     }
 
     public function setCreatedBy(User $createdBy): self
     {
-        $this->createdBy = $createdBy;
+        $this->createdBy = $createdBy ;
 
-        return $this;
+        return $this ;
     }
 
     public function getAlbum(): ?Album
     {
-        return $this->album;
+        return $this->album ;
     }
 
     public function setAlbum(?Album $album): self
     {
-        $this->album = $album;
+        $this->album = $album ;
 
-        return $this;
+        return $this ;
     }
 
     /**
@@ -134,46 +134,46 @@ class Photo
      */
     public function getTags(): Collection
     {
-        return $this->tags;
+        return $this->tags ;
     }
 
     public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
+            $this->tags[] = $tag ;
         }
 
-        return $this;
+        return $this ;
     }
 
     public function removeTag(Tag $tag): self
     {
-        $this->tags->removeElement($tag);
+        $this->tags->removeElement($tag) ;
 
-        return $this;
+        return $this ;
     }
 
     public function getTakenAt(): ?\DateTimeInterface
     {
-        return $this->takenAt;
+        return $this->takenAt ;
     }
 
     public function setTakenAt(?\DateTimeInterface $takenAt): self
     {
-        $this->takenAt = $takenAt;
+        $this->takenAt = $takenAt ;
 
-        return $this;
+        return $this ;
     }
 
     public function getLocation(): ?string
     {
-        return $this->location;
+        return $this->location ;
     }
 
     public function setLocation(?string $location): self
     {
-        $this->location = $location;
+        $this->location = $location ;
 
-        return $this;
+        return $this ;
     }
 }

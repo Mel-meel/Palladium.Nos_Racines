@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity ;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection ;
+use Doctrine\Common\Collections\Collection ;
+use Doctrine\ORM\Mapping as ORM ;
 
 #[ORM\Entity]
 class People
@@ -12,309 +12,309 @@ class People
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private int $id ;
 
     #[ORM\Column(type: 'json')]
-    private array $firstName = [];
+    private array $firstName = [] ;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $nickName = null;
+    private ?string $nickName = null ;
 
     #[ORM\Column(type: 'json')]
-    private array $lastName = [];
+    private array $lastName = [] ;
 
     #[ORM\Column(type: 'json', nullable: true)]
-    private ?array $birthName = null;
+    private ?array $birthName = null ;
 
     #[ORM\Column(type: 'string', length: 50)]
-    private string $gender;
+    private string $gender ;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?\DateTimeInterface $birthDate = null;
+    private ?\DateTimeInterface $birthDate = null ;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?\DateTimeInterface $deathDate = null;
+    private ?\DateTimeInterface $deathDate = null ;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $birthPlace = null;
+    private ?string $birthPlace = null ;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $deathPlace = null;
+    private ?string $deathPlace = null ;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $biography = null;
+    private ?string $biography = null ;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $occupation = null;
+    private ?string $occupation = null ;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $photo = null;
+    private ?string $photo = null ;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $nationality = null;
+    private ?string $nationality = null ;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $notes = null;
+    private ?string $notes = null ;
 
     #[ORM\OneToMany(mappedBy: 'personOne', targetEntity: Relationship::class, cascade: ['persist', 'remove'])]
-    private Collection $relationships;
+    private Collection $relationships ;
 
     #[ORM\OneToMany(targetEntity: PeopleDocument::class, mappedBy: 'person', cascade: ['persist', 'remove'])]
-    private Collection $documents;
+    private Collection $documents ;
 
     #[ORM\OneToMany(targetEntity: PeoplePhoto::class, mappedBy: 'person', cascade: ['persist', 'remove'])]
-    private Collection $photos;
+    private Collection $photos ;
 
     public function __construct()
     {
-        $this->relationships = new ArrayCollection();
-        $this->documents = new ArrayCollection();
-        $this->photos = new ArrayCollection();
+        $this->relationships = new ArrayCollection() ;
+        $this->documents = new ArrayCollection() ;
+        $this->photos = new ArrayCollection() ;
     }
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ;
     }
 
     public function getFirstName(): array
     {
-        return $this->firstName;
+        return $this->firstName ;
     }
 
     public function setFirstName(array $firstName): self
     {
-        $this->firstName = $firstName;
+        $this->firstName = $firstName ;
 
-        return $this;
+        return $this ;
     }
 
     public function getNickName(): ?string
     {
-        return $this->nickName;
+        return $this->nickName ;
     }
 
     public function setNickName(?string $nickName): self
     {
-        $this->nickName = $nickName;
+        $this->nickName = $nickName ;
 
-        return $this;
+        return $this ;
     }
 
     public function getLastName(): array
     {
-        return $this->lastName;
+        return $this->lastName ;
     }
 
     public function setLastName(array $lastName): self
     {
-        $this->lastName = $lastName;
+        $this->lastName = $lastName ;
 
-        return $this;
+        return $this ;
     }
 
     public function getBirthName(): ?array
     {
-        return $this->birthName;
+        return $this->birthName ;
     }
 
     public function setBirthName(?array $birthName): self
     {
-        $this->birthName = $birthName;
+        $this->birthName = $birthName ;
 
-        return $this;
+        return $this ;
     }
 
     public function getGender(): string
     {
-        return $this->gender;
+        return $this->gender ;
     }
 
     public function setGender(string $gender): self
     {
-        $this->gender = $gender;
+        $this->gender = $gender ;
 
-        return $this;
+        return $this ;
     }
 
     public function getBirthDate(): ?\DateTimeInterface
     {
-        return $this->birthDate;
+        return $this->birthDate ;
     }
 
     public function setBirthDate(?\DateTimeInterface $birthDate): self
     {
-        $this->birthDate = $birthDate;
+        $this->birthDate = $birthDate ;
 
-        return $this;
+        return $this ;
     }
 
     public function getDeathDate(): ?\DateTimeInterface
     {
-        return $this->deathDate;
+        return $this->deathDate ;
     }
 
     public function setDeathDate(?\DateTimeInterface $deathDate): self
     {
-        $this->deathDate = $deathDate;
+        $this->deathDate = $deathDate ;
 
-        return $this;
+        return $this ;
     }
 
     public function getBirthPlace(): ?string
     {
-        return $this->birthPlace;
+        return $this->birthPlace ;
     }
 
     public function setBirthPlace(?string $birthPlace): self
     {
-        $this->birthPlace = $birthPlace;
+        $this->birthPlace = $birthPlace ;
 
-        return $this;
+        return $this ;
     }
 
     public function getDeathPlace(): ?string
     {
-        return $this->deathPlace;
+        return $this->deathPlace ;
     }
 
     public function setDeathPlace(?string $deathPlace): self
     {
-        $this->deathPlace = $deathPlace;
+        $this->deathPlace = $deathPlace ;
 
-        return $this;
+        return $this ;
     }
 
     public function getBiography(): ?string
     {
-        return $this->biography;
+        return $this->biography ;
     }
 
     public function setBiography(?string $biography): self
     {
-        $this->biography = $biography;
+        $this->biography = $biography ;
 
-        return $this;
+        return $this ;
     }
 
     public function getOccupation(): ?string
     {
-        return $this->occupation;
+        return $this->occupation ;
     }
 
     public function setOccupation(?string $occupation): self
     {
-        $this->occupation = $occupation;
+        $this->occupation = $occupation ;
 
-        return $this;
+        return $this ;
     }
 
     public function getPhoto(): ?string
     {
-        return $this->photo;
+        return $this->photo ;
     }
 
     public function setPhoto(?string $photo): self
     {
-        $this->photo = $photo;
+        $this->photo = $photo ;
 
-        return $this;
+        return $this ;
     }
 
     public function getNationality(): ?string
     {
-        return $this->nationality;
+        return $this->nationality ;
     }
 
     public function setNationality(?string $nationality): self
     {
-        $this->nationality = $nationality;
+        $this->nationality = $nationality ;
 
-        return $this;
+        return $this ;
     }
 
     public function getNotes(): ?string
     {
-        return $this->notes;
+        return $this->notes ;
     }
 
     public function setNotes(?string $notes): self
     {
-        $this->notes = $notes;
+        $this->notes = $notes ;
 
-        return $this;
+        return $this ;
     }
 
     public function getRelationships(): Collection
     {
-        return $this->relationships;
+        return $this->relationships ;
     }
 
     public function addRelationship(Relationship $relationship): self
     {
         if (!$this->relationships->contains($relationship)) {
-            $this->relationships->add($relationship);
+            $this->relationships->add($relationship) ;
         }
 
-        return $this;
+        return $this ;
     }
 
     public function removeRelationship(Relationship $relationship): self
     {
-        $this->relationships->removeElement($relationship);
+        $this->relationships->removeElement($relationship) ;
 
-        return $this;
+        return $this ;
     }
 
     public function getDocuments(): Collection
     {
-        return $this->documents;
+        return $this->documents ;
     }
 
     public function addDocument(PeopleDocument $document): self
     {
         if (!$this->documents->contains($document)) {
-            $this->documents[] = $document;
-            $document->setPerson($this);
+            $this->documents[] = $document ;
+            $document->setPerson($this) ;
         }
 
-        return $this;
+        return $this ;
     }
 
     public function removeDocument(PeopleDocument $document): self
     {
         if ($this->documents->removeElement($document)) {
             if ($document->getPerson() === $this) {
-                $document->setPerson(null);
+                $document->setPerson(null) ;
             }
         }
 
-        return $this;
+        return $this ;
     }
 
     public function getPhotos(): Collection
     {
-        return $this->photos;
+        return $this->photos ;
     }
 
     public function addPhoto(PeoplePhoto $photo): self
     {
         if (!$this->photos->contains($photo)) {
-            $this->photos[] = $photo;
-            $photo->setPerson($this);
+            $this->photos[] = $photo ;
+            $photo->setPerson($this) ;
         }
 
-        return $this;
+        return $this ;
     }
 
     public function removePhoto(PeoplePhoto $photo): self
     {
         if ($this->photos->removeElement($photo)) {
             if ($photo->getPerson() === $this) {
-                $photo->setPerson(null);
+                $photo->setPerson(null) ;
             }
         }
 
-        return $this;
+        return $this ;
     }
 }

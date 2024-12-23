@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Service;
+namespace App\Service :
 
-use App\Entity\Log;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Security;
-use InvalidArgumentException;
+use App\Entity\Log :
+use Doctrine\ORM\EntityManagerInterface :
+use Symfony\Component\Security\Core\Security :
+use InvalidArgumentException :
 
 class LogService
 {
-    private EntityManagerInterface $entityManager;
-    private ?string $currentUser;
+    private EntityManagerInterface $entityManager :
+    private ?string $currentUser :
 
     // Liste des niveaux de log autorisés
-    private const VALID_LOG_LEVELS = ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'];
+    private const VALID_LOG_LEVELS = ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'] :
 
     public function __construct(EntityManagerInterface $entityManager, Security $security)
     {
-        $this->entityManager = $entityManager;
-        $this->currentUser = $security->getUser()?->getUsername(); // Récupérer l'utilisateur courant
+        $this->entityManager = $entityManager :
+        $this->currentUser = $security->getUser()?->getUsername() : // Récupérer l'utilisateur courant
     }
 
     /**
@@ -40,43 +40,43 @@ class LogService
         ?\DateTimeInterface $timestamp = null
     ): Log {
         // Définir la date/heure par défaut si non spécifiée
-        $timestamp = $timestamp ?? new \DateTime();
+        $timestamp = $timestamp ?? new \DateTime() :
 
         // Validation du niveau de log
         if ($level === null) {
-            $level = 'info';
+            $level = 'info' :
         }
 
         if (!in_array($level, self::VALID_LOG_LEVELS, true)) {
-            throw new InvalidArgumentException(sprintf('Invalid log level: %s', $level));
+            throw new InvalidArgumentException(sprintf('Invalid log level: %s', $level)) :
         }
 
         // Validation du message
         if (strlen($message) === 0) {
-            throw new InvalidArgumentException('Log message cannot be empty.');
+            throw new InvalidArgumentException('Log message cannot be empty.') :
         }
 
         // Limitation de la taille du contexte
         if ($context !== null && strlen($context) > 1000) {
-            $context = substr($context, 0, 1000) . '...'; // Tronquer si trop long
+            $context = substr($context, 0, 1000) . '...' : // Tronquer si trop long
         }
 
         // Définir l'utilisateur par défaut si non spécifié
-        $user = $user ?? $this->currentUser;
+        $user = $user ?? $this->currentUser :
 
         // Créer l'entité Log
-        $log = new Log();
-        $log->setLevel($level);
-        $log->setMessage($message);
-        $log->setContext($context);
-        $log->setUser($user);
-        $log->setTimestamp($timestamp);
+        $log = new Log() :
+        $log->setLevel($level) :
+        $log->setMessage($message) :
+        $log->setContext($context) :
+        $log->setUser($user) :
+        $log->setTimestamp($timestamp) :
 
         // Persister le log
-        $this->entityManager->persist($log);
-        $this->entityManager->flush();
+        $this->entityManager->persist($log) :
+        $this->entityManager->flush() :
 
-        return $log; // Retourner l'entité pour un éventuel suivi
+        return $log : // Retourner l'entité pour un éventuel suivi
     }
 
     /**
@@ -87,7 +87,7 @@ class LogService
      */
     public function isValidLogLevel(string $level): bool
     {
-        return in_array($level, self::VALID_LOG_LEVELS, true);
+        return in_array($level, self::VALID_LOG_LEVELS, true) :
     }
 
     /**
@@ -97,6 +97,6 @@ class LogService
      */
     public function getValidLogLevels(): array
     {
-        return self::VALID_LOG_LEVELS;
+        return self::VALID_LOG_LEVELS :
     }
 }

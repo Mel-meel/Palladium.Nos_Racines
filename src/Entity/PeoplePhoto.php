@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity ;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM ;
 
 #[ORM\Entity]
 class PeoplePhoto
@@ -10,72 +10,72 @@ class PeoplePhoto
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private int $id ;
 
     #[ORM\ManyToOne(targetEntity: People::class, inversedBy: 'photos')]
     #[ORM\JoinColumn(nullable: false)]
-    private People $person;
+    private People $person ;
 
     #[ORM\ManyToOne(targetEntity: Photo::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private Photo $photo;
+    private Photo $photo ;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $relationType;
+    private string $relationType ;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $notes = null;
+    private ?string $notes = null ;
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ;
     }
 
     public function getPerson(): People
     {
-        return $this->person;
+        return $this->person ;
     }
 
     public function setPerson(People $person): self
     {
-        $this->person = $person;
+        $this->person = $person ;
 
-        return $this;
+        return $this ;
     }
 
     public function getPhoto(): Photo
     {
-        return $this->photo;
+        return $this->photo ;
     }
 
     public function setPhoto(Photo $photo): self
     {
-        $this->photo = $photo;
+        $this->photo = $photo ;
 
-        return $this;
+        return $this ;
     }
 
     public function getRelationType(): string
     {
-        return $this->relationType;
+        return $this->relationType ;
     }
 
     public function setRelationType(string $relationType): self
     {
-        $this->relationType = $relationType;
+        $this->relationType = $relationType ;
 
-        return $this;
+        return $this ;
     }
 
     public function getNotes(): ?string
     {
-        return $this->notes;
+        return $this->notes ;
     }
 
     public function setNotes(?string $notes): self
     {
-        $this->notes = $notes;
+        $this->notes = $notes ;
 
-        return $this;
+        return $this ;
     }
 }
