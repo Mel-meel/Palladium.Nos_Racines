@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-class People2
+class People
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -56,6 +56,9 @@ class People2
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $notes = null;
 
+    #[ORM\OneToMany(mappedBy: 'personOne', targetEntity: Relationship::class, cascade: ['persist', 'remove'])]
+    private Collection $relationships;
+
     #[ORM\OneToMany(targetEntity: PeopleDocument::class, mappedBy: 'person', cascade: ['persist', 'remove'])]
     private Collection $documents;
 
@@ -64,6 +67,7 @@ class People2
 
     public function __construct()
     {
+        $this->relationships = new ArrayCollection();
         $this->documents = new ArrayCollection();
         $this->photos = new ArrayCollection();
     }
@@ -241,9 +245,27 @@ class People2
         return $this;
     }
 
-    /**
-     * @return Collection<int, PeopleDocument>
-     */
+    public function getRelationships(): Collection
+    {
+        return $this->relationships;
+    }
+
+    public function addRelationship(Relationship $relationship): self
+    {
+        if (!$this->relationships->contains($relationship)) {
+            $this->relationships->add($relationship);
+        }
+
+        return $this;
+    }
+
+    public function removeRelationship(Relationship $relationship): self
+    {
+        $this->relationships->removeElement($relationship);
+
+        return $this;
+    }
+
     public function getDocuments(): Collection
     {
         return $this->documents;
@@ -270,9 +292,6 @@ class People2
         return $this;
     }
 
-    /**
-     * @return Collection<int, PeoplePhoto>
-     */
     public function getPhotos(): Collection
     {
         return $this->photos;

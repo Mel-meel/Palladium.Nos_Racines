@@ -2,300 +2,89 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-class People
+#[ORM\Table(name: 'relationships')]
+class Relationship
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private int $id;
+    #[ORM\ManyToOne(targetEntity: People::class, inversedBy: 'relationships')]
+    #[ORM\JoinColumn(nullable: false)]
+    private People $personOne;
 
-    #[ORM\Column(type: 'json')]
-    private array $firstName = [];
+    #[ORM\Id]
+    #[ORM\ManyToOne(targetEntity: People::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private People $personTwo;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $nickName = null;
-
-    #[ORM\Column(type: 'json')]
-    private array $lastName = [];
-
-    #[ORM\Column(type: 'json', nullable: true)]
-    private ?array $birthName = null;
-
+    #[ORM\Id]
     #[ORM\Column(type: 'string', length: 50)]
-    private string $gender;
+    private string $relationshipType;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $isConfirmed = false;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?\DateTimeInterface $birthDate = null;
-
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?\DateTimeInterface $deathDate = null;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $birthPlace = null;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $deathPlace = null;
-
-    #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $biography = null;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $occupation = null;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $photo = null;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $nationality = null;
-
-    #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $notes = null;
-
-    #[ORM\OneToMany(targetEntity: PeopleDocument::class, mappedBy: 'person', cascade: ['persist', 'remove'])]
-    private Collection $documents;
-
-    #[ORM\OneToMany(targetEntity: PeoplePhoto::class, mappedBy: 'person', cascade: ['persist', 'remove'])]
-    private Collection $photos;
+    private ?\DateTimeInterface $createdAt;
 
     public function __construct()
     {
-        $this->documents = new ArrayCollection();
-        $this->photos = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
-    public function getId(): int
+    public function getPersonOne(): People
     {
-        return $this->id;
+        return $this->personOne;
     }
 
-    public function getFirstName(): array
+    public function setPersonOne(People $personOne): self
     {
-        return $this->firstName;
-    }
-
-    public function setFirstName(array $firstName): self
-    {
-        $this->firstName = $firstName;
-
+        $this->personOne = $personOne;
         return $this;
     }
 
-    public function getNickName(): ?string
+    public function getPersonTwo(): People
     {
-        return $this->nickName;
+        return $this->personTwo;
     }
 
-    public function setNickName(?string $nickName): self
+    public function setPersonTwo(People $personTwo): self
     {
-        $this->nickName = $nickName;
-
+        $this->personTwo = $personTwo;
         return $this;
     }
 
-    public function getLastName(): array
+    public function getRelationshipType(): string
     {
-        return $this->lastName;
+        return $this->relationshipType;
     }
 
-    public function setLastName(array $lastName): self
+    public function setRelationshipType(string $relationshipType): self
     {
-        $this->lastName = $lastName;
-
+        $this->relationshipType = $relationshipType;
         return $this;
     }
 
-    public function getBirthName(): ?array
+    public function isConfirmed(): bool
     {
-        return $this->birthName;
+        return $this->isConfirmed;
     }
 
-    public function setBirthName(?array $birthName): self
+    public function setIsConfirmed(bool $isConfirmed): self
     {
-        $this->birthName = $birthName;
-
+        $this->isConfirmed = $isConfirmed;
         return $this;
     }
 
-    public function getGender(): string
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->gender;
+        return $this->createdAt;
     }
 
-    public function setGender(string $gender): self
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
-        $this->gender = $gender;
-
-        return $this;
-    }
-
-    public function getBirthDate(): ?\DateTimeInterface
-    {
-        return $this->birthDate;
-    }
-
-    public function setBirthDate(?\DateTimeInterface $birthDate): self
-    {
-        $this->birthDate = $birthDate;
-
-        return $this;
-    }
-
-    public function getDeathDate(): ?\DateTimeInterface
-    {
-        return $this->deathDate;
-    }
-
-    public function setDeathDate(?\DateTimeInterface $deathDate): self
-    {
-        $this->deathDate = $deathDate;
-
-        return $this;
-    }
-
-    public function getBirthPlace(): ?string
-    {
-        return $this->birthPlace;
-    }
-
-    public function setBirthPlace(?string $birthPlace): self
-    {
-        $this->birthPlace = $birthPlace;
-
-        return $this;
-    }
-
-    public function getDeathPlace(): ?string
-    {
-        return $this->deathPlace;
-    }
-
-    public function setDeathPlace(?string $deathPlace): self
-    {
-        $this->deathPlace = $deathPlace;
-
-        return $this;
-    }
-
-    public function getBiography(): ?string
-    {
-        return $this->biography;
-    }
-
-    public function setBiography(?string $biography): self
-    {
-        $this->biography = $biography;
-
-        return $this;
-    }
-
-    public function getOccupation(): ?string
-    {
-        return $this->occupation;
-    }
-
-    public function setOccupation(?string $occupation): self
-    {
-        $this->occupation = $occupation;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    public function getNationality(): ?string
-    {
-        return $this->nationality;
-    }
-
-    public function setNationality(?string $nationality): self
-    {
-        $this->nationality = $nationality;
-
-        return $this;
-    }
-
-    public function getNotes(): ?string
-    {
-        return $this->notes;
-    }
-
-    public function setNotes(?string $notes): self
-    {
-        $this->notes = $notes;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, PeopleDocument>
-     */
-    public function getDocuments(): Collection
-    {
-        return $this->documents;
-    }
-
-    public function addDocument(PeopleDocument $document): self
-    {
-        if (!$this->documents->contains($document)) {
-            $this->documents[] = $document;
-            $document->setPerson($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDocument(PeopleDocument $document): self
-    {
-        if ($this->documents->removeElement($document)) {
-            if ($document->getPerson() === $this) {
-                $document->setPerson(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, PeoplePhoto>
-     */
-    public function getPhotos(): Collection
-    {
-        return $this->photos;
-    }
-
-    public function addPhoto(PeoplePhoto $photo): self
-    {
-        if (!$this->photos->contains($photo)) {
-            $this->photos[] = $photo;
-            $photo->setPerson($this);
-        }
-
-        return $this;
-    }
-
-    public function removePhoto(PeoplePhoto $photo): self
-    {
-        if ($this->photos->removeElement($photo)) {
-            if ($photo->getPerson() === $this) {
-                $photo->setPerson(null);
-            }
-        }
-
+        $this->createdAt = $createdAt;
         return $this;
     }
 }
