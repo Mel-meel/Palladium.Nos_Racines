@@ -1,0 +1,10 @@
+
+global_clan_name: "Nom du Clan"
+maintenance_mode: "Mode Maintenance"
+active_connection_link_start_page: "Lien de Connexion sur la Page d'Accueil"
+active_reception_template: "Template de Réception Actif"
+global_default_language: "Langue par Défaut"
+multilanguage_family: "Famille Multilingue"
+custom_footer_text: "Texte du Pied de Page"
+custom_advanced_main_menu: "Menu Principal Avancé (Desktop)"
+custom_advanced_main_menu_mobile: "Menu Principal Avancé (Mobile)"
