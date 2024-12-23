@@ -1,0 +1,28 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-image: url('images/our_roots_01.webp');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    width: 80vw; /* largeur relative */
+    max-width: 960px; /* largeur maximale */
+    /*height: calc(80vw * 3 / 4);*/ /* calcul de la hauteur en fonction de l'aspect ratio 4:3 */
+    min-height : 80% ;
+    /*max-height: 720px;*/ /* hauteur maximale en fonction du ratio */
+    background-color: rgba(255, 255, 255, 0.8); /* couleur de fond semi-transparente pour mieux voir l'arrière-plan */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* optionnel : ombre pour le contenu */
+    overflow: auto; /* pour gérer le débordement du contenu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

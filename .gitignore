@@ -1,0 +1,20 @@
+/vendor/
+/composer.lock
+/bin/
+/migrations/
+/var/
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+/hash.php
+/.env
+/.en.test
+/.compose.yaml
+/.compose.override.yaml
+/.phpunit.dist
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

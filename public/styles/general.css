@@ -1,0 +1,48 @@
+/* Styles pour les champs de formulaire */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #8c7853; /* Bordure couleur bronze */
+    border-radius: 4px;
+    background: #f4f1e8; /* Fond beige clair */
+    color: #4e3a1a; /* Texte couleur marron foncé */
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace; /* Police de style machine à écrire */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #d8a750; /* Bordure couleur or */
+    background: #fff; /* Fond blanc au focus */
+    outline: none;
+}
+
+/* Styles pour le bouton de soumission */
+button {
+    background: #8c7853; /* Fond couleur bronze */
+    color: #f4f1e8; /* Texte couleur beige clair */
+    border: 2px solid #8c7853; /* Bordure couleur bronze */
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace; /* Police de style machine à écrire */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button:hover,
+button:focus {
+    background: #d8a750; /* Fond couleur or */
+    border-color: #d8a750; /* Bordure couleur or */
+    color: #4e3a1a; /* Texte couleur marron foncé */
+    outline: none;
+}
+
+body {
+    font-family : arial;
+}
