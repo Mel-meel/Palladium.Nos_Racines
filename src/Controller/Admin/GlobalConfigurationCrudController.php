@@ -1,31 +1,27 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin ;
 
-use App\Entity\GlobalConfigurations;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use App\Entity\GlobalConfigurations ;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController ;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField ;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField ;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField ;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField ;
+use Symfony\Contracts\Translation\TranslatorInterface ;
 
-class GlobalConfigurationCrudController extends AbstractCrudController
-{
-    private TranslatorInterface $translator;
+class GlobalConfigurationCrudController extends AbstractCrudController {
+    private TranslatorInterface $translator ;
 
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
+    public function __construct(TranslatorInterface $translator) {
+        $this->translator = $translator ;
     }
 
-    public static function getEntityFqcn(): string
-    {
-        return GlobalConfigurations::class;
+    public static function getEntityFqcn() : string {
+        return GlobalConfigurations::class ;
     }
 
-    public function configureFields(string $pageName): iterable
-    {
+    public function configureFields(string $pageName) : iterable {
         return [
             TextField::new('globalClanName', $this->translator->trans('global_clan_name')),
             BooleanField::new('maintenanceMode', $this->translator->trans('maintenance_mode')),
@@ -41,6 +37,6 @@ class GlobalConfigurationCrudController extends AbstractCrudController
             TextField::new('customFooterText', $this->translator->trans('custom_footer_text'))->hideOnIndex(),
             IntegerField::new('customAdvancedMainMenu', $this->translator->trans('custom_advanced_main_menu')),
             IntegerField::new('customAdvancedMainMenuMobile', $this->translator->trans('custom_advanced_main_menu_mobile')),
-        ];
+        ] ;
     }
 }
