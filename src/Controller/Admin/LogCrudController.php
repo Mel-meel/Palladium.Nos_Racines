@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField ;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField ;
 use Symfony\Component\Security\Core\Authorization\Voter\RoleVoter ;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField ;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class LogCrudController extends AbstractCrudController {
     public static function getEntityFqcn() : string {

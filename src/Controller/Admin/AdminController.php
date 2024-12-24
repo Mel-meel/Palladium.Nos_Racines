@@ -32,7 +32,7 @@ class AdminController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home') ;
         yield MenuItem::linkToCrud('Personnes', 'fa fa-users', People::class) ;
-        yield MenuItem::linkToCrud('Documents', 'fa fa-file-alt', DocumentVersion::class) ;
+        //yield MenuItem::linkToCrud('Documents', 'fa fa-file-alt', DocumentVersion::class) ;
         yield MenuItem::linkToCrud('Logs', 'fa fa-list', Log::class)->setPermission('ROLE_ADMIN')->setAction('index') ;
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user-cog', User::class)->setPermission('ROLE_ADMIN') ;
     }

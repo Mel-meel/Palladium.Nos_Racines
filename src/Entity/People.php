@@ -7,24 +7,23 @@ use Doctrine\Common\Collections\Collection ;
 use Doctrine\ORM\Mapping as ORM ;
 
 #[ORM\Entity]
-class People
-{
+class People {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id ;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'json')]
-    private array $firstName = [] ;
+    private array $firstNames = [] ;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $nickName = null ;
 
     #[ORM\Column(type: 'json')]
-    private array $lastName = [] ;
+    private array $lastNames = [] ;
 
     #[ORM\Column(type: 'json', nullable: true)]
-    private ?array $birthName = null ;
+    private ?array $birthNames = [] ;
 
     #[ORM\Column(type: 'string', length: 50)]
     private string $gender ;
@@ -72,7 +71,7 @@ class People
         $this->photos = new ArrayCollection() ;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id ;
     }

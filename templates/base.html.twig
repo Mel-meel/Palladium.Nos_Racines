@@ -23,8 +23,17 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
-        <div class="content">
-        {% block body %}{% endblock %}
-        </div>
+      
+    <header>
+        {% block menu %}{% endblock %}
+    </header>
+
+    <main>
+        {% block body %}s{% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}{% endblock %}
+    </footer>
     </body>
 </html>
